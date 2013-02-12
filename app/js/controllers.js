@@ -3,7 +3,7 @@
 /* Controllers */
 
 function BigDaddy($scope, tiles) {
-    $scope.partial = tiles.getTile();
+    $scope.tiles = tiles.getTiles();
     $scope.backgroundColor = "#ffffff";
 
     tiles.registerMaster(function (message) {
@@ -21,9 +21,16 @@ function Partial1Controller($scope, tiles) {
     $scope.callback = tiles.register('Partial1');
 
     $scope.callReg = function() {
-        $scope.callback("#ff0000");
+        $scope.callback("#77BDF0");
     };
 }
 
-function Partial2Controller() {
+function Partial2Controller($scope, tiles) {
+    $scope.metric = "This is a metric";
+
+    $scope.callback = tiles.register('Partial2');
+
+    $scope.callReg = function() {
+        $scope.callback("#C1BBC6")
+    }
 }
