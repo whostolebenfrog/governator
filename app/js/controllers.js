@@ -2,11 +2,28 @@
 
 /* Controllers */
 
+function BigDaddy($scope, tiles) {
+    $scope.partial = tiles.getTile();
+    $scope.backgroundColor = "#ffffff";
 
-function MyCtrl1() {}
-MyCtrl1.$inject = [];
+    tiles.registerMaster(function (message) {
+        $scope.backgroundColor = message; 
+    });
 
-
-function MyCtrl2() {
+    $scope.move = function() {
+        $scope.partial = tiles.getTile();
+    };
 }
-MyCtrl2.$inject = [];
+
+function Partial1Controller($scope, tiles) {
+    $scope.x = "This is a binding";
+
+    $scope.callback = tiles.register('Partial1');
+
+    $scope.callReg = function() {
+        $scope.callback("#ff0000");
+    };
+}
+
+function Partial2Controller() {
+}

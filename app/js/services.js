@@ -2,8 +2,45 @@
 
 /* Services */
 
+var module = angular.module('myApp', []);
 
-// Demonstrate how to register services
-// In this case it is a simple value service.
-angular.module('myApp.services', []).
-  value('version', '0.1');
+module.factory('tiles', function() {
+    var tileService = {};
+
+    tileService.tiles = {
+            Partial1 : {
+                url : "partials/partial1.html"
+            },
+            Partial2 : {
+                url : "partials/partial2.html"
+            }
+        };
+
+    tileService.callback = function(tile) {
+            return function(message) {
+                console.log(tileService);
+                if (tileService.master !== null)
+                    tileService.master(message);
+            };
+        }
+
+    tileService.master = null,
+
+    tileService.registerMaster = function(callback) {
+            console.log("registering master");
+            this.master = callback; 
+    }
+
+    tileService.register = function(tile) {
+            this.primaryTile = this.tiles[tile].url;
+            return this.callback(tile);
+        }
+
+    tileService.getTile = function() {
+            return this.tiles.Partial1.url;
+        }
+
+    return tileService;
+
+
+});

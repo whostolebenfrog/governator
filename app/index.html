@@ -4,20 +4,34 @@
   <meta charset="utf-8">
   <title>My AngularJS App</title>
   <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/bootstrap.css"/>
 </head>
-<body>
-  <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul>
+<body ng-controller="BigDaddy" style="background-color: {{backgroundColor}};">
 
-  <div ng-view></div>
+    <div class="container">
 
-  <div>Angular seed app: v<span app-version></span></div>
+        <h1>Governator</h1>
 
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-  -->
+        <table class="big-table">
+        <tr>
+            <td class="third">1</td>
+            <td colspan="2" rowspan="2" class="two-thirds">2</td>
+        </tr>
+        <tr>
+            <td class="third">3</td>
+        </tr>
+        <tr>
+            <td class="third">4</td>
+            <td class="third">5</td>
+            <td class="third">6</td>
+        </tr>
+        </table>
+
+        <ng-include src="partial"></ng-include>
+    
+    </div>
+
+
   <script src="lib/angular/angular.js"></script>
   <script src="js/app.js"></script>
   <script src="js/services.js"></script>
