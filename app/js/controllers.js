@@ -2,17 +2,19 @@
 
 /* Controllers */
 
-function BigDaddy($scope, tiles) {
-    $scope.tiles = tiles.getTiles();
+function BigDaddy($scope, $timeout, tiles) {
     $scope.backgroundColor = "#ffffff";
+
+    function renewTiles() {
+        $scope.tiles = tiles.getTiles();
+        $timeout(renewTiles, 5000);
+    }
+
+    renewTiles();
 
     tiles.registerMaster(function (message) {
         $scope.backgroundColor = message; 
     });
-
-    $scope.move = function() {
-        $scope.partial = tiles.getTile();
-    };
 }
 
 function Partial1Controller($scope, tiles) {

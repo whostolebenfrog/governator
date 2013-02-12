@@ -9,16 +9,17 @@ module.factory('tiles', function() {
 
     tileService.tiles = {
         Partial1 : {
-            url : "partials/partial1.html"
+            url : "partials/partial1.html",
+            interest : 1
         },
         Partial2 : {
-            url : "partials/partial2.html"
+            url : "partials/partial2.html",
+            interest : 1
         }
     };
 
     tileService.callback = function(tile) {
         return function(message) {
-            console.log(tileService);
             if (tileService.master !== null)
                 tileService.master(message);
         };
@@ -27,7 +28,6 @@ module.factory('tiles', function() {
     tileService.master = null,
 
     tileService.registerMaster = function(callback) {
-        console.log("registering master");
         this.master = callback; 
     }
 
